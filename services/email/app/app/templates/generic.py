@@ -67,4 +67,6 @@ class TemplateGeneric(Template):
 
         result_summary = ' | '.join([f'{result or "Not run"}: {count}' for result, count in results.items()])
 
-        return f'A01 Automation Run {str(creation)} - {result_summary}.'
+        product = run['details'].get('a01.reserved.product', 'A01')
+
+        return f'{product} Automation Run {str(creation)} - {result_summary}.'
