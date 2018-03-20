@@ -31,7 +31,8 @@ class TemplateGeneric(Template):
 
         creation = datetime.strptime(run['creation'], '%Y-%m-%dT%H:%M:%SZ') - timedelta(hours=8)
 
-        summaries = [('Run ID', run['id']),
+        summaries = [('Product', run['details'].get('a01.reserved.product', 'N/A')),
+                     ('Run ID', run['id']),
                      ('Creation', str(creation) + ' PST'),
                      ('Creator', run['details'].get('a01.reserved.creator', 'N/A')),
                      ('Remark', run['settings'].get('a01.reserved.remark', 'N/A')),
