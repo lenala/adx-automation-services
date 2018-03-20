@@ -1,10 +1,12 @@
+from typing import List
 from collections import defaultdict
 from datetime import datetime, timedelta
 from tabulate import tabulate
-from templates.template import Template
+from app.templates.template import Template
+
 
 class TemplateGo(Template):
-    def get_context(self, run: dict, tasks: dict) -> dict:
+    def get_context(self, run: dict, tasks: List[dict]) -> dict:
         statuses = defaultdict(lambda: 0)
         results = defaultdict(lambda: 0)
 
@@ -55,7 +57,7 @@ class TemplateGo(Template):
             'runID': run['id']
         }
 
-    def get_subject(self, run: dict, tasks: dict) -> str:
+    def get_subject(self, run: dict, tasks: List[dict]) -> str:
         creation = datetime.strptime(run['creation'], '%Y-%m-%dT%H:%M:%SZ') - timedelta(hours=8)
 
         results = defaultdict(lambda: 0)
